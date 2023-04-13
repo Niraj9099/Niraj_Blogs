@@ -1,0 +1,81 @@
+{% extends 'blog/base.html' %}
+
+
+{% block style %}
+<style>
+ 
+    .imges{
+       width: 80%;
+       height: 200px;
+       
+    }
+    .main{
+        border: 1px solid black;
+        padding: 20px;
+        background-color: rgb(181, 214, 203);
+        border-radius: 25px;
+        box-shadow: 0px 7px 20px black;
+    }
+    
+    .page{
+        font-size: 20px;
+    }
+
+    .text a, .pagenum{
+        text-decoration: none;
+        border: 1px solid black;
+        padding: 2px 10px;
+        background-color: bisque;
+        color: black;
+    }
+</style>
+
+{% endblock style %}
+
+
+{% block contant %}
+
+<h1 class="text-center mt-3">BLOGS LIST</h1>
+
+<section class="about section-padding mt-0 pt-2" id="about">
+    <div class="container">
+        {% if data is not Null %}
+        {% for data in data %}
+
+
+            <div class="row mt-3 main">
+                <div class="col-lg-4 col-md-12 col-12">
+                    <div class="about-img text-center">
+                        <img alt="" class="img-fluid imges" src="{{data.img.url}}" height="10px">
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-12 col-12 ps-lg-5">
+                    <div class="about-text">
+                        <h2>{{data.title}}</h2>
+                        <p class="disc">{{data.disc | truncatewords:20}}</p> 
+                        <p><a class="btn btn-warning mt-3" href="{% url 'post' data.id %}">Learn More</a></p>
+                        <p class="text-end">Publish By - {{data.user.username}}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        {% endif %}
+
+    </div>
+</section>
+
+<div class='text-center page m-5'>
+    <h4>Page No :</h4>
+    <span class="text-center text">
+        {% if data.has_previous %}
+        <a href="?page={{data.previous_page_number}}">Previous</a>
+        {% endif %}
+
+        <span class="pagenum">{{data.number}}</span>
+
+        {% if data.has_next %}
+        <a href="?page={{data.next_page_number}}">Next</a>
+        {% endif %}
+    </span>
+</div>
+{% endblock contant %}

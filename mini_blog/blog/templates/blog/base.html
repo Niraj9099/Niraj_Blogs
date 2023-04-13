@@ -1,0 +1,123 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>NIRAJBLOGS.COM</title>
+    <!-- All CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href='{% static "css/main.css" %}'>
+    
+    {% block style %}
+    {% endblock style %}
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'home' %}"><span class="text-warning">Niraj</span>Blogs</a> <button
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                class="navbar-toggler" data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse"
+                type="button"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'about' %}">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'contact' %}">ContactUS</a>
+                    </li>
+
+                    {% if request.user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dashbord' %}">Dashbord</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'signup' %}" >SignUp</a>
+                        
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Login</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="carousel slide" data-bs-ride="carousel" id="carouselExampleIndicators">
+        <div class="carousel-indicators">
+            <button aria-label="Slide 1" class="active" data-bs-slide-to="0" data-bs-target="#carouselExampleIndicators"
+                type="button"></button> <button aria-label="Slide 2" data-bs-slide-to="1"
+                data-bs-target="#carouselExampleIndicators" type="button"></button> <button aria-label="Slide 3"
+                data-bs-slide-to="2" data-bs-target="#carouselExampleIndicators" type="button"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img alt="..." class="d-block w-100"
+                    src="https://media.istockphoto.com/id/1182474473/photo/old-fashioned-chairoplane-chain-swing-ride-at-munichs-beer-fest-germany.jpg?b=1&s=170667a&w=0&k=20&c=uJ1pCMSLZpKUahOBENjFgbk7mePUmRCuw2HfZ419I9I=">
+                <div class="carousel-caption">
+                    <h5>Adventures in the Outdoors</h5>
+                    <p>A blog about hiking, camping, and exploring the great outdoors. Tips, reviews, and inspiration for nature lovers.</p>
+                    <!-- <p><a class="btn btn-warning mt-3" href="#">Learn More</a></p> -->
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img alt="..." class="d-block w-100"
+                    src="https://images.unsplash.com/photo-1432821596592-e2c18b78144f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YmxvZyUyMGJhY2tncm91bmR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60">
+                <div class="carousel-caption">
+                    <h5>Mindful Musings</h5>
+                    <p> A blog that explores mindfulness and self-improvement. Tips, techniques, and personal stories to help you live a more mindful and fulfilling life.</p>
+                    <!-- <p><a class="btn btn-warning mt-3" href="#">Learn More</a></p> -->
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img alt="..." class="d-block w-100"
+                    src="https://media.istockphoto.com/id/1299747512/photo/speech-bubble-shaped-pink-neon-light-and-white-exclamation-point-sitting-on-black-wall.jpg?b=1&s=170667a&w=0&k=20&c=X_DqFSl83A5_gqBQ8DTyCfcxA1tGMqs0jCZJOztXF-0=">
+                <div class="carousel-caption">
+                    <h5>The Tech Hub</h5>
+                    <p> A blog that covers the latest in technology and gadgets. Reviews, news, and tips for tech enthusiasts and professionals.</p>
+                    <!-- <p><a class="btn btn-warning mt-3" href="#">Learn More</a></p> -->
+
+                </div>
+            </div>
+        </div><button class="carousel-control-prev" data-bs-slide="prev" data-bs-target="#carouselExampleIndicators"
+            type="button"><span aria-hidden="true" class="carousel-control-prev-icon"></span> <span
+                class="visually-hidden">Previous</span></button> <button class="carousel-control-next"
+            data-bs-slide="next" data-bs-target="#carouselExampleIndicators" type="button"><span aria-hidden="true"
+                class="carousel-control-next-icon"></span> <span class="visually-hidden">Next</span></button>
+   
+    </div>
+
+    {% block contant %}
+
+    {% endblock contant %}
+
+    
+    <!-- footer starts -->
+    <footer class="bg-dark p-2 text-center">
+        <div class="container">
+            <p class="text-white">All Right Reserved By @NIRAJBLOGS.COM</p>
+        </div>
+    </footer>
+    <!-- footer ends -->
+
+    <!-- All Js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

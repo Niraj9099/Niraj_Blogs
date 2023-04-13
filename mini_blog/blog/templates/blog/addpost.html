@@ -1,0 +1,79 @@
+{% extends 'blog/base.html' %}
+
+
+{% block style %}
+<style>
+    
+      
+    .error{
+        color:red;
+    }
+
+    .label{
+        font-weight: 500;
+        font-size: large;
+    }
+    .disc_fild{
+        height: 20vh;
+        width: 300px;
+    }
+    .title_fild{
+        height: 10vh;
+        width: 300px;
+    }
+
+    #id_img{
+        width: 300px;
+    }
+    .myheading{
+        box-shadow: 2px 2px 5px black;
+        text-shadow: 1px 1px 1px black;
+    }
+</style>
+ 
+{% endblock style %}
+
+
+{% block contant %}
+  
+<div class="container">
+    <h3 class="alert alert-danger mt-3 myheading" >New Post</h3>
+
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+              <strong>{{message}}</strong> 
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="alert alert-primary mx-0">
+    <form action="" method="post" enctype="multipart/form-data"  novalidate >
+        {% csrf_token %}
+
+        {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+                <p>{{error}}</p>
+            {% endfor %}
+        {% endif %}
+
+
+            {% for fm in form %}
+            <div class="mt-3 label">{{fm.label_tag}}</div>
+            <div class=" mt-3 text">{{fm}} <span class="error">{{fm.errors|striptags}}</span></div>
+            {% endfor %}
+
+            
+            <div class="mt-5">
+
+                <input type="submit" value="Add" class='text-center btn btn-success px-3'>
+                <a href="{% url 'dashbord' %}" class="btn btn-primary">Back</a>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+{% endblock contant %}

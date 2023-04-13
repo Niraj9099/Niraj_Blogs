@@ -1,0 +1,75 @@
+{% extends 'blog/base.html' %}
+
+
+{% block style %}
+<style>
+     body{
+            background-color: rgb(73, 73, 73);
+    }
+      
+    .error{
+        color:red;
+    }
+
+    .label{
+        font-weight: 500;
+        font-size: large;
+    }
+    
+</style>
+ 
+{% endblock style %}
+
+
+{% block contant %}
+  
+<div class="container">
+    <h1 class="alert alert-danger mt-3 text-center">SignUp Page</h1>
+
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+              <strong>{{message}}</strong> 
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="alert alert-primary mx-0">
+    <form action="" method="post" novalidate>
+        {% csrf_token %}
+
+        {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+                <p>{{error}}</p>
+            {% endfor %}
+        {% endif %}
+
+
+            {% for fm in form %}
+            <!-- <div class="row">
+                <div class="col-12 col-md-6 label">{{fm.label_tag}}</div>
+                <div class="col-12 col-md-6 mt-3 text-left ">{{fm}} <span class="error">{{fm.errors|striptags}}</span></div>
+            </div> -->
+            <div class="row">
+                <div class="col-12 col-md-6 mx-auto pt-2 form-group">
+                    {{fm.label_tag}} {{fm}} <span class="error">{{fm.errors|striptags}}</span>
+                </div>
+            </div>
+          
+
+            {% endfor %}
+
+            
+            <div class="text-center mt-5">
+
+                <input type="submit" value="submit" class='text-center btn btn-success px-3'>
+                <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+{% endblock contant %}
